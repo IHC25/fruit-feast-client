@@ -2,8 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
-      <h1>This is footer</h1>
+    <div className="container-fluid py-2">
+      <p>
+        <small>Copyright © 2022 IHC | All rights reserved.</small>
+      </p>
     </div>
   );
 };
