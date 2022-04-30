@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -13,7 +15,6 @@ const UpdateProduct = () => {
 
   const handleDelivered = () => {
     const quantity = product.quantity - 1;
-    console.log(quantity);
     const updatedProduct = { quantity };
 
     // send data to server to update quantity
@@ -26,7 +27,43 @@ const UpdateProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("updated", data);
+        toast.success("Product Delivered Successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+  const handleRestock = (e) => {
+    e.preventDefault();
+    const oldQuantity = product.quantity;
+    const newQuantity = e.target.quantity.value;
+    const quantity = parseInt(oldQuantity) + parseInt(newQuantity) + "";
+    const updatedProduct = { quantity };
+
+    // send data to server to restock product
+    fetch(`http://localhost:5000/inventory/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Product Restocked Successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   };
   return (
@@ -57,6 +94,27 @@ const UpdateProduct = () => {
           <Button onClick={handleDelivered}>Delivered</Button>
         </Card.Body>
       </Card>
+      <form onSubmit={handleRestock}>
+        <input
+          type="number"
+          className="m-2"
+          name="quantity"
+          placeholder="Enter Quantity"
+          required
+        />
+        <Button as="input" type="submit" value="Restock" size="sm" />
+      </form>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
