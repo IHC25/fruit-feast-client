@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="container-fluid py-2">
+    <div className="container-fluid py-2 bg-light">
       <p>
         <small>Copyright © 2022 IHC | All rights reserved.</small>
       </p>

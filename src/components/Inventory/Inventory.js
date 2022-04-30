@@ -9,7 +9,7 @@ const Inventory = () => {
       .then((data) => setProducts(data));
   }, []);
   return (
-    <div>
+    <div className="mt-5">
       <h1>Inventory</h1>
       <div className="row p-3">
         {products.slice(0, 6).map((product) => (
