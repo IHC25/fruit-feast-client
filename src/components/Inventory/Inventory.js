@@ -6,8 +6,12 @@ const Inventory = () => {
   useEffect(() => {
     fetch("http://localhost:5000/inventory")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        // console.log(data);
+        setProducts(data);
+      });
   }, []);
+
   return (
     <div className="mt-5">
       <h1>Inventory</h1>

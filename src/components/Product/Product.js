@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
   const { _id, name, img, price, quantity, supplier, description } = product;
-  const shortDescription = description.slice(0, 200);
+  //   const shortDescription = description.slice(0, 200);
   const navigate = useNavigate();
   //   handle navigateToUpdate
   const navigateToUpdate = (id) => {
@@ -12,11 +12,13 @@ const Product = ({ product }) => {
   };
   return (
     <div className="col p-4 w-50 mx-auto">
-      <Card style={{ width: "18rem" }}>
+      <Card className="h-100" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={img} />
         <Card.Body>
           <Card.Title>{name}</Card.Title>
-          <Card.Text>{shortDescription}</Card.Text>
+          <Card.Text className="overflow-hidden" style={{ height: "18rem" }}>
+            {description}
+          </Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
           <ListGroupItem>Price: {price} Tk</ListGroupItem>
