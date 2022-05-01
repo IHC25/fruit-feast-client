@@ -4,7 +4,9 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Inventory from "./components/Inventory/Inventory";
+import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
+import Register from "./components/Register/Register";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           path="/inventory/:id"
           element={<UpdateProduct></UpdateProduct>}
         ></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
