@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 
 const Inventory = () => {
@@ -20,6 +22,15 @@ const Inventory = () => {
           <Product key={product._id} product={product}></Product>
         ))}
       </div>
+      <Button
+        style={{ textDecoration: "none" }}
+        variant="link"
+        size="lg"
+        as={Link}
+        to="/manage"
+      >
+        Manage Inventories
+      </Button>
     </div>
   );
 };

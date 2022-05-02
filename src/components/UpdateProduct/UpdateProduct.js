@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -104,6 +104,15 @@ const UpdateProduct = () => {
         />
         <Button as="input" type="submit" value="Restock" size="sm" />
       </form>
+      <Button
+        style={{ textDecoration: "none" }}
+        variant="link"
+        size="lg"
+        as={Link}
+        to="/manage"
+      >
+        Manage Inventories
+      </Button>
       <ToastContainer
         position="top-right"
         autoClose={5000}
