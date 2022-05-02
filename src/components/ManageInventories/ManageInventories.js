@@ -4,7 +4,23 @@ import useInventory from "../../hooks/useInventory";
 
 const ManageInventories = () => {
   let [count, setCount] = useState(1);
-  const [products] = useInventory();
+  const [products, setProducts] = useInventory();
+
+  const handleDelete = (id) => {
+    const proceed = window.confirm("Are you sure?");
+    if (proceed) {
+      const url = `http://localhost:5000/inventory/${id}`;
+      fetch(url, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = products.filter((service) => service._id !== id);
+          setProducts(remaining);
+        });
+    }
+  };
 
   return (
     <div>
@@ -21,14 +37,18 @@ const ManageInventories = () => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr>
+            <tr key={product._id}>
               <td>{count++}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
               <td>{product.quantity}</td>
               <td>{product.supplier}</td>
               <td>
-                <Button variant="danger" size="small">
+                <Button
+                  onClick={() => handleDelete(product._id)}
+                  variant="danger"
+                  size="small"
+                >
                   Delete
                 </Button>
               </td>

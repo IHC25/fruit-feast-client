@@ -9,6 +9,6 @@ const useInventory = () => {
         setProducts(data);
       });
   }, []);
-  return [products];
+  return [products, setProducts];
 };
 export default useInventory;
