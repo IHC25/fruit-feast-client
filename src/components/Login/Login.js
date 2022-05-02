@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
@@ -9,7 +9,9 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
+  const location = useLocation();
 
+  let from = location.state?.from?.pathname || "/home";
   if (loading) {
     return (
       <div className="w-100 d-flex justify-content-center align-item-center">
@@ -19,7 +21,7 @@ const Login = () => {
   }
 
   if (user) {
-    navigate("/home");
+    navigate(from, { replace: true });
   }
 
   const handleLogin = (e) => {
@@ -57,7 +59,7 @@ const Login = () => {
         </Form>
         {error ? (
           <div className="py-2">
-            <p>Error: {error.message}</p>
+            <p className="text-danger">Error: {error.message}</p>
           </div>
         ) : (
           <div></div>

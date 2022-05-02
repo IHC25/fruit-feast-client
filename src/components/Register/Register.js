@@ -18,7 +18,6 @@ const Register = () => {
       </div>
     );
   }
-
   if (user) {
     navigate("/home");
   }
@@ -57,7 +56,7 @@ const Register = () => {
           </Button>
           {error ? (
             <div className="py-2">
-              <p>Error: {error.message}</p>
+              <p className="text-danger">Error: {error.message}</p>
             </div>
           ) : (
             <div></div>
