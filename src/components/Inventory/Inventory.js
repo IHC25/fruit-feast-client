@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useInventory from "../../hooks/useInventory";
 import Product from "../Product/Product";
 
 const Inventory = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/inventory")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setProducts(data);
-      });
-  }, []);
+  const [products] = useInventory();
 
   return (
     <div className="mt-5">
