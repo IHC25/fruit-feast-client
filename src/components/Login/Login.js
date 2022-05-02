@@ -13,6 +13,13 @@ const Login = () => {
   if (user) {
     navigate("/home");
   }
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+      </div>
+    );
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
