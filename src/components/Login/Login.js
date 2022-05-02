@@ -1,17 +1,34 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
+
+  if (user) {
+    navigate("/home");
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    signInWithEmailAndPassword(email, password);
+  };
   return (
     <div className="container py-3">
       <h2 className="pt-3">Please Login</h2>
       <div className="w-50 mx-auto py-5">
-        <Form>
+        <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control type="email" name="email" placeholder="Enter email" />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
@@ -19,7 +36,11 @@ const Login = () => {
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -38,6 +59,7 @@ const Login = () => {
           Register
         </Button>
       </p>
+      <SocialLogin></SocialLogin>
     </div>
   );
 };
