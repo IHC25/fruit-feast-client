@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -10,6 +10,14 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth);
 
   const navigate = useNavigate();
+
+  if (loading) {
+    return (
+      <div className="w-100 d-flex justify-content-center align-item-center">
+        <Spinner animation="border" variant="primary"></Spinner>
+      </div>
+    );
+  }
 
   if (user) {
     navigate("/home");
@@ -47,6 +55,13 @@ const Register = () => {
           <Button variant="primary" type="submit">
             Register
           </Button>
+          {error ? (
+            <div className="py-2">
+              <p>Error: {error.message}</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </Form>
       </div>
       <p className="py-3">

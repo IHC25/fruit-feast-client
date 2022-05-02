@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -10,15 +10,16 @@ const Login = () => {
     useSignInWithEmailAndPassword(auth);
   const navigate = useNavigate();
 
-  if (user) {
-    navigate("/home");
-  }
-  if (error) {
+  if (loading) {
     return (
-      <div>
-        <p>Error: {error.message}</p>
+      <div className="w-100 d-flex justify-content-center align-item-center">
+        <Spinner animation="border" variant="primary"></Spinner>
       </div>
     );
+  }
+
+  if (user) {
+    navigate("/home");
   }
 
   const handleLogin = (e) => {
@@ -54,6 +55,13 @@ const Login = () => {
             Login
           </Button>
         </Form>
+        {error ? (
+          <div className="py-2">
+            <p>Error: {error.message}</p>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
       <p className="py-3">
         New to Fruit Feast?{" "}
