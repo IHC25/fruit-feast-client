@@ -65,6 +65,8 @@ const UpdateProduct = () => {
           progress: undefined,
         });
       });
+
+    e.target.reset();
   };
   return (
     <div className="w-50 mx-auto">

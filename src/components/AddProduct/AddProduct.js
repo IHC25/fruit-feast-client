@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddProduct = () => {
   const handleAddProduct = (e) => {
@@ -11,7 +12,17 @@ const AddProduct = () => {
     const price = e.target.price.value;
     const supplier = e.target.supplier.value;
     const newProduct = { name, img, description, quantity, price, supplier };
-    console.log(newProduct);
+    fetch("http://localhost:5000/inventory/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("New Product Added.");
+      });
 
     e.target.reset();
   };
@@ -35,7 +46,7 @@ const AddProduct = () => {
           required
         />
         <br />
-        <input
+        <textarea
           className="px-5 my-2 w-50"
           type="text"
           name="description"
@@ -70,6 +81,7 @@ const AddProduct = () => {
         <Button type="submit" variant="primary">
           Add Product
         </Button>
+        <ToastContainer></ToastContainer>
       </form>
     </div>
   );
