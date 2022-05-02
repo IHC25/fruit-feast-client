@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import useInventory from "../../hooks/useInventory";
 
 const ManageInventories = () => {
   let [count, setCount] = useState(1);
   const [products, setProducts] = useInventory();
+  const navigate = useNavigate();
 
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure?");
@@ -56,6 +58,9 @@ const ManageInventories = () => {
           ))}
         </tbody>
       </Table>
+      <Button onClick={() => navigate("/add")} variant="primary" size="lg">
+        ADD NEW PRODUCT
+      </Button>
     </div>
   );
 };

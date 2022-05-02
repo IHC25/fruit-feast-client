@@ -1,0 +1,78 @@
+import React from "react";
+import { Button } from "react-bootstrap";
+
+const AddProduct = () => {
+  const handleAddProduct = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const img = e.target.img.value;
+    const description = e.target.description.value;
+    const quantity = e.target.quantity.value;
+    const price = e.target.price.value;
+    const supplier = e.target.supplier.value;
+    const newProduct = { name, img, description, quantity, price, supplier };
+    console.log(newProduct);
+
+    e.target.reset();
+  };
+  return (
+    <div className="container my-5">
+      <h2 className="pt-4">Add New Product</h2>
+      <form onSubmit={handleAddProduct} className="p-2 mb-5">
+        <input
+          className="px-5 my-2 w-50"
+          type="text"
+          name="name"
+          placeholder="Product Name"
+          required
+        />
+        <br />
+        <input
+          className="px-5 my-2 w-50"
+          type="text"
+          name="img"
+          placeholder="Product Image URL"
+          required
+        />
+        <br />
+        <input
+          className="px-5 my-2 w-50"
+          type="text"
+          name="description"
+          placeholder="Product Description"
+          required
+        />
+        <br />
+        <input
+          className="px-5 my-2 w-50"
+          type="number"
+          name="price"
+          placeholder="Product Price"
+          required
+        />
+        <br />
+        <input
+          className="px-5 my-2 w-50"
+          type="number"
+          name="quantity"
+          placeholder="Product Quantity"
+          required
+        />
+        <br />
+        <input
+          className="px-5 my-2 w-50"
+          type="text"
+          name="supplier"
+          placeholder="Supplier Name"
+          required
+        />
+        <br />
+        <Button type="submit" variant="primary">
+          Add Product
+        </Button>
+      </form>
+    </div>
+  );
+};
+
+export default AddProduct;
