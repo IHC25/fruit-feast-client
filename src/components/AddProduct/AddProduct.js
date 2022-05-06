@@ -1,17 +1,30 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast, ToastContainer } from "react-toastify";
+import auth from "../../firebase.init";
 
 const AddProduct = () => {
+  const [user] = useAuthState(auth);
+
   const handleAddProduct = (e) => {
     e.preventDefault();
+    const email = user?.email;
     const name = e.target.name.value;
     const img = e.target.img.value;
     const description = e.target.description.value;
     const quantity = e.target.quantity.value;
     const price = e.target.price.value;
     const supplier = e.target.supplier.value;
-    const newProduct = { name, img, description, quantity, price, supplier };
+    const newProduct = {
+      email,
+      name,
+      img,
+      description,
+      quantity,
+      price,
+      supplier,
+    };
     fetch("http://localhost:5000/inventory/", {
       method: "POST",
       headers: {
@@ -23,6 +36,16 @@ const AddProduct = () => {
       .then((data) => {
         toast.success("New Product Added.");
       });
+
+    fetch("http://localhost:5000/my-products/", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => {});
 
     e.target.reset();
   };

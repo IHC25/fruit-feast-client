@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import useInventory from "../../hooks/useInventory";
 
 const ManageInventories = () => {
-  let [count, setCount] = useState(1);
+  let count = 1;
   const [products, setProducts] = useInventory();
   const navigate = useNavigate();
 
@@ -17,15 +17,14 @@ const ManageInventories = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          const remaining = products.filter((service) => service._id !== id);
+          const remaining = products.filter((product) => product._id !== id);
           setProducts(remaining);
         });
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h2 className="py-2">Manage Inventories</h2>
       <Table striped bordered hover size="sm">
         <thead>

@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="mb-4">
       <Card className="bg-light text-dark">
-        <Card.Img src={banner} alt="Card image" />
+        <Card.Img height={400} src={banner} alt="Card image" />
         <Card.ImgOverlay className="h-50 my-auto">
           <Card.Title>
             Welcome to <span className="text-primary">Fruit Feast Manager</span>

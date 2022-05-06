@@ -8,9 +8,9 @@ const Inventory = () => {
   const [products] = useInventory();
 
   return (
-    <div className="mt-5">
+    <div className="container mt-5">
       <h1>Inventory</h1>
-      <div className="row p-3">
+      <div className="row m-0 p-0 g-3">
         {products.slice(0, 6).map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}
