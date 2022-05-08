@@ -22,3 +22,4 @@ This is a react web application to manage fruit warehouse.
 - MongoDB
 
 ### Live Website
+[https://fruit-feast-77dda.web.app/]

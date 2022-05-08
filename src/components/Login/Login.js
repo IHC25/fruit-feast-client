@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -24,12 +25,14 @@ const Login = () => {
     navigate(from, { replace: true });
   }
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
+    const {data} = await axios.post('http://localhost:5000/get-token',{email});
+    localStorage.setItem('accessToken',data.accessToken);
   };
   return (
     <div className="container py-3">

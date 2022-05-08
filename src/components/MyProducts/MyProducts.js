@@ -1,37 +1,22 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import useInventory from "../../hooks/useInventory";
 import useMyProducts from "../../hooks/useMyProducts";
 
 const MyProducts = () => {
-  const [products, setProducts] = useInventory();
   const [myProducts, setMyProducts] = useMyProducts();
 
   const handleDeleteMyProduct = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      const deleteProduct = async (url) => {
-        const response = await fetch(url, {
+        const url = `http://localhost:5000/my-products/${id}`;
+        fetch(url, {
           method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await response.json();
-
-        console.log(data);
-        const productsRemaining = products.filter(
-          (product) => product._id !== id
-        );
-        const myProductsRemaining = myProducts.filter(
-          (product) => product._id !== id
-        );
-        setProducts(productsRemaining);
-        setMyProducts(myProductsRemaining);
-      };
-      deleteProduct(`http://localhost:5000/inventory/${id}`);
-      deleteProduct(`http://localhost:5000/my-products/${id}`);
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const remaining = myProducts.filter((product) => product._id !== id);
+            setMyProducts(remaining);
+          });
     }
   };
 
