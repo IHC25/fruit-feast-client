@@ -8,7 +8,7 @@ const MyProducts = () => {
   const handleDeleteMyProduct = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-        const url = `http://localhost:5000/my-products/${id}`;
+        const url = `https://aqueous-sierra-14452.herokuapp.com/my-products/${id}`;
         fetch(url, {
           method: "DELETE",
         })

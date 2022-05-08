@@ -25,7 +25,7 @@ const AddProduct = () => {
       price,
       supplier,
     };
-    fetch("http://localhost:5000/inventory/", {
+    fetch("https://aqueous-sierra-14452.herokuapp.com/inventory/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -37,7 +37,7 @@ const AddProduct = () => {
         toast.success("New Product Added.");
       });
 
-    fetch("http://localhost:5000/my-products/", {
+    fetch("https://aqueous-sierra-14452.herokuapp.com/my-products/", {
       method: "POST",
       headers: {
         "content-type": "application/json",

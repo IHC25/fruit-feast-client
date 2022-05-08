@@ -7,7 +7,7 @@ const useMyProducts = () => {
   const [myProducts, setMyProducts] = useState([]);
   useEffect(() => {
     const email = user.email;
-    fetch(`http://localhost:5000/my-products?email=${email}`,{
+    fetch(`https://aqueous-sierra-14452.herokuapp.com/my-products?email=${email}`,{
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`
       }

@@ -8,7 +8,7 @@ const UpdateProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/inventory/${id}`)
+    fetch(`https://aqueous-sierra-14452.herokuapp.com/inventory/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [id, product]);
@@ -18,7 +18,7 @@ const UpdateProduct = () => {
     const updatedProduct = { quantity };
 
     // send data to server to update quantity
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://aqueous-sierra-14452.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -46,7 +46,7 @@ const UpdateProduct = () => {
     const updatedProduct = { quantity };
 
     // send data to server to restock product
-    fetch(`http://localhost:5000/inventory/${id}`, {
+    fetch(`https://aqueous-sierra-14452.herokuapp.com/inventory/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

@@ -31,7 +31,7 @@ const Login = () => {
     const password = e.target.password.value;
 
     await signInWithEmailAndPassword(email, password);
-    const {data} = await axios.post('http://localhost:5000/get-token',{email});
+    const {data} = await axios.post('https://aqueous-sierra-14452.herokuapp.com/get-token',{email});
     localStorage.setItem('accessToken',data.accessToken);
   };
   return (
