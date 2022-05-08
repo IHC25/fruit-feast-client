@@ -12,6 +12,7 @@ import MyProducts from "./components/MyProducts/MyProducts";
 import NotFound from "./components/NotFound/NotFound";
 import Register from "./components/Register/Register";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
+import ResetPassword from "./components/ResetPassword/ResetPassword";
 import UpdateProduct from "./components/UpdateProduct/UpdateProduct";
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           }
         ></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/reset" element={<ResetPassword></ResetPassword>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>

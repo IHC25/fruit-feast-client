@@ -57,6 +57,17 @@ const Login = () => {
             Login
           </Button>
         </Form>
+        <div>
+          Forgot Password?{" "}
+          <Button
+            onClick={() => {
+              navigate("/reset");
+            }}
+            variant="link"
+          >
+            Reset
+          </Button>
+        </div>
         {error ? (
           <div className="py-2">
             <p className="text-danger">Error: {error.message}</p>
