@@ -1,14 +1,11 @@
-import { async } from "@firebase/util";
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import auth from "../../firebase.init";
 
 const ResetPassword = () => {
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
-  const navigate = useNavigate();
   const handleResetPassword = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
