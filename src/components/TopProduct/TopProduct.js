@@ -1,5 +1,12 @@
 import React from "react";
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 const TopProduct = () => {
   // Product Data
@@ -12,12 +19,14 @@ const TopProduct = () => {
   return (
     <div className="container">
       <h2>Top Products</h2>
-      <BarChart className="mx-auto" width={800} height={600} data={data}>
-        <Bar dataKey="delivered" fill="#80dead" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="name" />
-        <YAxis dataKey="delivered" />
-      </BarChart>
+      <ResponsiveContainer width="70%" height={600}>
+        <BarChart className="mx-auto" width={400} height={600} data={data}>
+          <Bar dataKey="delivered" fill="#80dead" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="name" fontSize="8px" />
+          <YAxis dataKey="delivered" />
+        </BarChart>
+      </ResponsiveContainer>
       <p>
         <small>This chart shows the top products delivered stats</small>
       </p>
